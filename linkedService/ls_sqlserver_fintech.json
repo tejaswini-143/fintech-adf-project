@@ -1,0 +1,21 @@
+{
+	"name": "ls_sqlserver_fintech",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "localhost",
+			"database": "MyDatabase",
+			"encrypt": "mandatory",
+			"trustServerCertificate": true,
+			"authenticationType": "SQL",
+			"userName": "Teju",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyOTg1MzIzMS1jY2UwLTQ3MmEtYWMzNi01OTEyZmQyYTMzN2YiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "shir-fintech-local",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

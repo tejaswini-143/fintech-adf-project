@@ -1,0 +1,6 @@
+{
+	"name": "shir-fintech-local",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
