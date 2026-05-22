@@ -1,0 +1,379 @@
+{
+	"name": "ds_application_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqlserver_fintech",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "loan_application_number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "temp_number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "branch_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "lead_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "customer_category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "customer_subcategory",
+				"type": "nvarchar"
+			},
+			{
+				"name": "customer_type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "loan_type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "loan_purpose",
+				"type": "nvarchar"
+			},
+			{
+				"name": "product",
+				"type": "nvarchar"
+			},
+			{
+				"name": "loan_amount",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 2
+			},
+			{
+				"name": "workflow_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "source_id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "consent",
+				"type": "nvarchar"
+			},
+			{
+				"name": "is_active",
+				"type": "nvarchar"
+			},
+			{
+				"name": "status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "application_applied_by",
+				"type": "nvarchar"
+			},
+			{
+				"name": "application_creation_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "lms_application_number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "is_manual_kyc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "manual_kyc_status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "manual_kyc_approved_by",
+				"type": "nvarchar"
+			},
+			{
+				"name": "manual_kyc_approved_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "created_by",
+				"type": "nvarchar"
+			},
+			{
+				"name": "created_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "modified_by",
+				"type": "nvarchar"
+			},
+			{
+				"name": "modified_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "supervised_by",
+				"type": "nvarchar"
+			},
+			{
+				"name": "supervised_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "no_of_pdcs",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ln_init_fnl_consent",
+				"type": "nvarchar"
+			},
+			{
+				"name": "loan_purpose_category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "wf_code",
+				"type": "varchar"
+			},
+			{
+				"name": "is_intrnlcrdtscr_calc",
+				"type": "bit"
+			},
+			{
+				"name": "is_riskbasedpricing_calc",
+				"type": "bit"
+			},
+			{
+				"name": "is_cashflowsummary_calc",
+				"type": "bit"
+			},
+			{
+				"name": "RejectedOn",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "RejectedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RejectedReason",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RejectedRemarks",
+				"type": "nvarchar"
+			},
+			{
+				"name": "industry_line",
+				"type": "nvarchar"
+			},
+			{
+				"name": "isNewDocSetup",
+				"type": "bit"
+			},
+			{
+				"name": "SourceOfLead",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProcessBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsDisbursed",
+				"type": "bit"
+			},
+			{
+				"name": "DisbursedTime",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "IsDataCorrectedApplication",
+				"type": "bit"
+			},
+			{
+				"name": "DCRequestedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DCRequestedTime",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "DCRequestedReason",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DCRequestedRemarks",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsDataCorrectionCompleted",
+				"type": "bit"
+			},
+			{
+				"name": "DCPerformedBy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DCPerformedOn",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "DCCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DCPerformedReason",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DCPerformedRemarks",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsChargeCalcTriggered",
+				"type": "bit"
+			},
+			{
+				"name": "CalcTriggerTime",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ChargeCalcErrorMessage",
+				"type": "varchar"
+			},
+			{
+				"name": "IsDocDmsUpdated",
+				"type": "varchar"
+			},
+			{
+				"name": "IsDocDmsUpdatedTime",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "DocDmsUpdatedMsg",
+				"type": "varchar"
+			},
+			{
+				"name": "IsConvertedToLoan",
+				"type": "bit"
+			},
+			{
+				"name": "IsCBTriggered",
+				"type": "bit"
+			},
+			{
+				"name": "PreviousAppID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "IsSanctionConsent",
+				"type": "bit"
+			},
+			{
+				"name": "SanctionAgreedTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "IsSanLetterAgreed",
+				"type": "bit"
+			},
+			{
+				"name": "SanctionLetterDMSID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsMobileNumberVerified",
+				"type": "bit"
+			},
+			{
+				"name": "IsTermsCondAgreed",
+				"type": "bit"
+			},
+			{
+				"name": "SubBranch",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsEsigned",
+				"type": "bit"
+			},
+			{
+				"name": "EsignedTime",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "ESignDMSID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "IsENachCompleted",
+				"type": "bit"
+			},
+			{
+				"name": "ENachTime",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "ESignRemarks",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsEligibilityWF",
+				"type": "bit"
+			},
+			{
+				"name": "LMSAccountID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OldWF",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PDType",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_loan_application"
+		}
+	}
+}
