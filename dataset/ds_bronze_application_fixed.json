@@ -1,0 +1,360 @@
+{
+	"name": "ds_bronze_application_fixed",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_fintech",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "dbo.tbl_loan_application.parquet",
+				"folderPath": "application",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "loan_application_number",
+				"type": "UTF8"
+			},
+			{
+				"name": "temp_number",
+				"type": "UTF8"
+			},
+			{
+				"name": "branch_id",
+				"type": "INT32"
+			},
+			{
+				"name": "lead_id",
+				"type": "INT32"
+			},
+			{
+				"name": "customer_category",
+				"type": "UTF8"
+			},
+			{
+				"name": "customer_subcategory",
+				"type": "UTF8"
+			},
+			{
+				"name": "customer_type",
+				"type": "UTF8"
+			},
+			{
+				"name": "loan_type",
+				"type": "UTF8"
+			},
+			{
+				"name": "loan_purpose",
+				"type": "UTF8"
+			},
+			{
+				"name": "product",
+				"type": "UTF8"
+			},
+			{
+				"name": "loan_amount",
+				"type": "DECIMAL",
+				"precision": 19,
+				"scale": 2
+			},
+			{
+				"name": "workflow_id",
+				"type": "INT32"
+			},
+			{
+				"name": "source_id",
+				"type": "UTF8"
+			},
+			{
+				"name": "consent",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_active",
+				"type": "UTF8"
+			},
+			{
+				"name": "status",
+				"type": "UTF8"
+			},
+			{
+				"name": "application_applied_by",
+				"type": "UTF8"
+			},
+			{
+				"name": "application_creation_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "lms_application_number",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_manual_kyc",
+				"type": "UTF8"
+			},
+			{
+				"name": "manual_kyc_status",
+				"type": "UTF8"
+			},
+			{
+				"name": "manual_kyc_approved_by",
+				"type": "UTF8"
+			},
+			{
+				"name": "manual_kyc_approved_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "created_by",
+				"type": "UTF8"
+			},
+			{
+				"name": "created_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "modified_by",
+				"type": "UTF8"
+			},
+			{
+				"name": "modified_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "supervised_by",
+				"type": "UTF8"
+			},
+			{
+				"name": "supervised_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "no_of_pdcs",
+				"type": "INT32"
+			},
+			{
+				"name": "ln_init_fnl_consent",
+				"type": "UTF8"
+			},
+			{
+				"name": "loan_purpose_category",
+				"type": "UTF8"
+			},
+			{
+				"name": "id",
+				"type": "INT32"
+			},
+			{
+				"name": "wf_code",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_intrnlcrdtscr_calc",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "is_riskbasedpricing_calc",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "is_cashflowsummary_calc",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "RejectedOn",
+				"type": "INT96"
+			},
+			{
+				"name": "RejectedBy",
+				"type": "UTF8"
+			},
+			{
+				"name": "RejectedReason",
+				"type": "UTF8"
+			},
+			{
+				"name": "RejectedRemarks",
+				"type": "UTF8"
+			},
+			{
+				"name": "industry_line",
+				"type": "UTF8"
+			},
+			{
+				"name": "isNewDocSetup",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "SourceOfLead",
+				"type": "UTF8"
+			},
+			{
+				"name": "ProcessBy",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsDisbursed",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "DisbursedTime",
+				"type": "INT96"
+			},
+			{
+				"name": "IsDataCorrectedApplication",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "DCRequestedBy",
+				"type": "UTF8"
+			},
+			{
+				"name": "DCRequestedTime",
+				"type": "INT96"
+			},
+			{
+				"name": "DCRequestedReason",
+				"type": "UTF8"
+			},
+			{
+				"name": "DCRequestedRemarks",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsDataCorrectionCompleted",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "DCPerformedBy",
+				"type": "UTF8"
+			},
+			{
+				"name": "DCPerformedOn",
+				"type": "INT96"
+			},
+			{
+				"name": "DCCount",
+				"type": "INT32"
+			},
+			{
+				"name": "DCPerformedReason",
+				"type": "UTF8"
+			},
+			{
+				"name": "DCPerformedRemarks",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsChargeCalcTriggered",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "CalcTriggerTime",
+				"type": "INT96"
+			},
+			{
+				"name": "ChargeCalcErrorMessage",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsDocDmsUpdated",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsDocDmsUpdatedTime",
+				"type": "INT96"
+			},
+			{
+				"name": "DocDmsUpdatedMsg",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsConvertedToLoan",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "IsCBTriggered",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "PreviousAppID",
+				"type": "INT64"
+			},
+			{
+				"name": "IsSanctionConsent",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "SanctionAgreedTime",
+				"type": "INT96"
+			},
+			{
+				"name": "IsSanLetterAgreed",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "SanctionLetterDMSID",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsMobileNumberVerified",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "IsTermsCondAgreed",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "SubBranch",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsEsigned",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "EsignedTime",
+				"type": "INT96"
+			},
+			{
+				"name": "ESignDMSID",
+				"type": "INT64"
+			},
+			{
+				"name": "IsENachCompleted",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "ENachTime",
+				"type": "INT96"
+			},
+			{
+				"name": "ESignRemarks",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsEligibilityWF",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "LMSAccountID",
+				"type": "UTF8"
+			},
+			{
+				"name": "OldWF",
+				"type": "UTF8"
+			},
+			{
+				"name": "PDType",
+				"type": "UTF8"
+			}
+		]
+	}
+}
