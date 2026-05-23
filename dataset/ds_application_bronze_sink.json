@@ -5,12 +5,20 @@
 			"referenceName": "ls_adls_fintech",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"folder_name": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "application",
+				"folderPath": {
+					"value": "@dataset().folder_name",
+					"type": "Expression"
+				},
 				"fileSystem": "bronze"
 			},
 			"compressionCodec": "snappy"

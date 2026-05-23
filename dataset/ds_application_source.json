@@ -5,6 +5,11 @@
 			"referenceName": "ls_sqlserver_fintech",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"table_name": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": [
@@ -373,7 +378,10 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "tbl_loan_application"
+			"table": {
+				"value": "@dataset().table_name",
+				"type": "Expression"
+			}
 		}
 	}
 }
