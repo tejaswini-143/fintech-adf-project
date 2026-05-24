@@ -25,7 +25,7 @@
 						"referenceName": "ds_metadata_silver",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "@dataset().table_name"
+							"table_name": "ds_metadata_silver"
 						}
 					},
 					"firstRowOnly": false
