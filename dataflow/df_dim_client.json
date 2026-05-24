@@ -1,6 +1,9 @@
 {
 	"name": "df_dim_client",
 	"properties": {
+		"folder": {
+			"name": "Gold - Star Schema"
+		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [

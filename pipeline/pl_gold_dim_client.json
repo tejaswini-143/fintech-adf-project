@@ -1,5 +1,5 @@
 {
-	"name": "pl_gold_client",
+	"name": "pl_gold_dim_client",
 	"properties": {
 		"activities": [
 			{
@@ -27,6 +27,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "Gold Pipeline"
+		},
 		"annotations": []
 	}
 }
