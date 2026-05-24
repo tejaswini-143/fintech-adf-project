@@ -1,0 +1,23 @@
+{
+	"name": "ds_gold_dim_client_bank",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_fintech",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Gold"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "dim_bank",
+				"fileSystem": "gold"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
