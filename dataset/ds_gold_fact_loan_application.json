@@ -1,0 +1,23 @@
+{
+	"name": "ds_gold_fact_loan_application",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_fintech",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Gold"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "fact_loan_application",
+				"fileSystem": "gold"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
