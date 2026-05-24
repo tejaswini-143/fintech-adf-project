@@ -1,0 +1,23 @@
+{
+	"name": "ds_silver_client_address_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_fintech",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Silver"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "client_address",
+				"fileSystem": "silver"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

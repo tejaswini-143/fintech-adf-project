@@ -33,10 +33,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": {
-				"value": "@dataset().table_name",
-				"type": "Expression"
-			}
+			"table": "metadata_silver"
 		}
 	}
 }
