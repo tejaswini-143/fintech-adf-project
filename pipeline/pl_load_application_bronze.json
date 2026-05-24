@@ -43,13 +43,19 @@
 				"inputs": [
 					{
 						"referenceName": "ds_application_source",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "dbo.tbl_loan_application"
+						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "ds_application_bronze_sink",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"folder_name": "application"
+						}
 					}
 				]
 			}
