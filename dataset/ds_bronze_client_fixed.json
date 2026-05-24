@@ -1,0 +1,559 @@
+{
+	"name": "ds_bronze_client_fixed",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_fintech",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Bronze"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "dbo.tbl_client.parquet",
+				"folderPath": "client",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "loan_application_id",
+				"type": "INT32"
+			},
+			{
+				"name": "client_type",
+				"type": "UTF8"
+			},
+			{
+				"name": "relation_type",
+				"type": "UTF8"
+			},
+			{
+				"name": "title",
+				"type": "UTF8"
+			},
+			{
+				"name": "first_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "middle_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "last_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "date_of_birth",
+				"type": "DATE"
+			},
+			{
+				"name": "age",
+				"type": "INT32"
+			},
+			{
+				"name": "father_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "spouse_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "caste",
+				"type": "UTF8"
+			},
+			{
+				"name": "religion",
+				"type": "UTF8"
+			},
+			{
+				"name": "mother_tongue",
+				"type": "UTF8"
+			},
+			{
+				"name": "education_qualification",
+				"type": "UTF8"
+			},
+			{
+				"name": "gender",
+				"type": "UTF8"
+			},
+			{
+				"name": "marital_status",
+				"type": "UTF8"
+			},
+			{
+				"name": "mobile_number",
+				"type": "UTF8"
+			},
+			{
+				"name": "email",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_kyc_manual",
+				"type": "UTF8"
+			},
+			{
+				"name": "kyc_type_id_1",
+				"type": "UTF8"
+			},
+			{
+				"name": "kyc_id_value_1",
+				"type": "UTF8"
+			},
+			{
+				"name": "kyc_type_1_expiry_date",
+				"type": "DATE"
+			},
+			{
+				"name": "kyc_type_id_2",
+				"type": "UTF8"
+			},
+			{
+				"name": "kyc_id_value_2",
+				"type": "UTF8"
+			},
+			{
+				"name": "kyc_type_2_expiry_date",
+				"type": "DATE"
+			},
+			{
+				"name": "kyc_type_id_3",
+				"type": "UTF8"
+			},
+			{
+				"name": "kyc_id_value_3",
+				"type": "UTF8"
+			},
+			{
+				"name": "kyc_type_3_expiry_date",
+				"type": "DATE"
+			},
+			{
+				"name": "kyc_type_id_4",
+				"type": "UTF8"
+			},
+			{
+				"name": "kyc_id_value_4",
+				"type": "UTF8"
+			},
+			{
+				"name": "kyc_type_4_expiry_date",
+				"type": "DATE"
+			},
+			{
+				"name": "is_msme",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_mobile_number_verified",
+				"type": "UTF8"
+			},
+			{
+				"name": "mobile_no_verified_time",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_email_verified",
+				"type": "UTF8"
+			},
+			{
+				"name": "email_verified_time",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_aadhar_number_verified",
+				"type": "UTF8"
+			},
+			{
+				"name": "aadhar_no_verified_time",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_pan_verified",
+				"type": "UTF8"
+			},
+			{
+				"name": "pan_no_verified_time",
+				"type": "UTF8"
+			},
+			{
+				"name": "udyam_registration_number",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_udyam_registration_number_verified",
+				"type": "UTF8"
+			},
+			{
+				"name": "udyam_no_verified_time",
+				"type": "UTF8"
+			},
+			{
+				"name": "dedupe_check",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_dedupe_passed",
+				"type": "UTF8"
+			},
+			{
+				"name": "dedupe_check_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "dms_id",
+				"type": "INT32"
+			},
+			{
+				"name": "image_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "geo_code",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_active",
+				"type": "UTF8"
+			},
+			{
+				"name": "lms_client_id",
+				"type": "UTF8"
+			},
+			{
+				"name": "lms_customer_type_id",
+				"type": "UTF8"
+			},
+			{
+				"name": "client_creation_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "created_by",
+				"type": "UTF8"
+			},
+			{
+				"name": "created_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "modified_by",
+				"type": "UTF8"
+			},
+			{
+				"name": "modified_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "supervised_by",
+				"type": "UTF8"
+			},
+			{
+				"name": "supervised_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_kyc_manual_approved",
+				"type": "UTF8"
+			},
+			{
+				"name": "no_of_spdcs",
+				"type": "INT32"
+			},
+			{
+				"name": "is_aadhar_verification_mandatory",
+				"type": "UTF8"
+			},
+			{
+				"name": "customer_type",
+				"type": "UTF8"
+			},
+			{
+				"name": "no_of_pdcs",
+				"type": "INT32"
+			},
+			{
+				"name": "full_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "id",
+				"type": "INT32"
+			},
+			{
+				"name": "member_id",
+				"type": "INT64"
+			},
+			{
+				"name": "IsVoterVerified",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "VoterVerifiedDate",
+				"type": "DATE"
+			},
+			{
+				"name": "alternate_mobile_number",
+				"type": "UTF8"
+			},
+			{
+				"name": "mothers_maiden_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "name_as_per_aadhar",
+				"type": "UTF8"
+			},
+			{
+				"name": "dob_as_per_aadhar",
+				"type": "DATE"
+			},
+			{
+				"name": "relative_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "relative_relationship",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_relation_employee_of_institution",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "branch_id",
+				"type": "INT32"
+			},
+			{
+				"name": "no_of_dependents",
+				"type": "INT32"
+			},
+			{
+				"name": "is_saved",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "rel_emp_code",
+				"type": "UTF8"
+			},
+			{
+				"name": "same_as_mobile_no",
+				"type": "UTF8"
+			},
+			{
+				"name": "drop_reason",
+				"type": "UTF8"
+			},
+			{
+				"name": "drop_remarks",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_imported_client",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "is_name_matched",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "name_matched_time",
+				"type": "INT96"
+			},
+			{
+				"name": "TotalCBEMI",
+				"type": "DECIMAL",
+				"precision": 19,
+				"scale": 2
+			},
+			{
+				"name": "IsTotalCBEMIUpdated",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "new_lms_client_id",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_new_client_creation",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "ID1VerifiedDate",
+				"type": "INT96"
+			},
+			{
+				"name": "ID2VerifiedDate",
+				"type": "INT96"
+			},
+			{
+				"name": "ID3VerifiedDate",
+				"type": "INT96"
+			},
+			{
+				"name": "ID4VerifiedDate",
+				"type": "INT96"
+			},
+			{
+				"name": "justification_reason",
+				"type": "UTF8"
+			},
+			{
+				"name": "lms_classification_customer_type",
+				"type": "UTF8"
+			},
+			{
+				"name": "NameAsPerID1",
+				"type": "UTF8"
+			},
+			{
+				"name": "NameAsPerID2",
+				"type": "UTF8"
+			},
+			{
+				"name": "NameAsPerID3",
+				"type": "UTF8"
+			},
+			{
+				"name": "NameAsPerID4",
+				"type": "UTF8"
+			},
+			{
+				"name": "KYCRetryCount",
+				"type": "INT32"
+			},
+			{
+				"name": "IsExiFamRel",
+				"type": "UTF8"
+			},
+			{
+				"name": "NameAsPerPAN",
+				"type": "UTF8"
+			},
+			{
+				"name": "FatherNameAsPerPAN",
+				"type": "UTF8"
+			},
+			{
+				"name": "DOBAsPerPAN",
+				"type": "DATE"
+			},
+			{
+				"name": "CKYCNumber",
+				"type": "UTF8"
+			},
+			{
+				"name": "CBConsent",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "GenericConsent",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "PrivacyConsent",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "IsPEP",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "IsDisabled",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "DisabilityType",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsTaxResidentOutsideIndia",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "SpouseFirstName",
+				"type": "UTF8"
+			},
+			{
+				"name": "SpouseLastName",
+				"type": "UTF8"
+			},
+			{
+				"name": "SpouseMiddleName",
+				"type": "UTF8"
+			},
+			{
+				"name": "CBEnquiryRefNo",
+				"type": "INT64"
+			},
+			{
+				"name": "ID1Verified",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "ID2Verified",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "ID3Verified",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "ID4Verified",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "IsEsigned",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "EsignedTime",
+				"type": "INT96"
+			},
+			{
+				"name": "ocr_dms_id1",
+				"type": "INT32"
+			},
+			{
+				"name": "is_ocr_verified_id1",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "ocr_dms_id2",
+				"type": "INT32"
+			},
+			{
+				"name": "is_ocr_verified_id2",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "ocr_dms_id3",
+				"type": "INT32"
+			},
+			{
+				"name": "is_ocr_verified_id3",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "ocr_dms_id4",
+				"type": "INT32"
+			},
+			{
+				"name": "is_ocr_verified_id4",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "isQrDone",
+				"type": "BOOLEAN"
+			}
+		]
+	}
+}

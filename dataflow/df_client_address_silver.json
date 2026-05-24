@@ -1,0 +1,129 @@
+{
+	"name": "df_client_address_silver",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_bronze_client_address_fixed",
+						"type": "DatasetReference"
+					},
+					"name": "srcclientaddress"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_bronze_client_address_fixed",
+						"type": "DatasetReference"
+					},
+					"name": "snksilverclientaddress"
+				}
+			],
+			"transformations": [
+				{
+					"name": "drvstandardize"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          client_id as integer,",
+				"          address_type as string,",
+				"          address_line_1 as string,",
+				"          address_line_2 as string,",
+				"          landmark as string,",
+				"          pincode as string,",
+				"          city as string,",
+				"          district as string,",
+				"          state as string,",
+				"          country as string,",
+				"          mobile_or_land_line_number as string,",
+				"          email_id as string,",
+				"          address_ownership as string,",
+				"          owner_details as string,",
+				"          owner_name as string,",
+				"          geo_classification as string,",
+				"          years_at_residence as integer,",
+				"          years_in_current_city_or_town as integer,",
+				"          is_active as string,",
+				"          created_by as string,",
+				"          created_date as string,",
+				"          modified_by as string,",
+				"          modified_date as string,",
+				"          supervised_by as string,",
+				"          supervised_date as string,",
+				"          same_as as string,",
+				"          addr_change_type as string,",
+				"          is_kyc as string,",
+				"          addr_dms_id as integer,",
+				"          is_e_kyc as string,",
+				"          is_lms as string,",
+				"          is_udyam as string,",
+				"          same_as_cust_addr_type as string,",
+				"          id as integer,",
+				"          is_saved as boolean,",
+				"          village_name as string,",
+				"          houserooftype as string,",
+				"          DataSource as string,",
+				"          Taluk as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> srcclientaddress",
+				"srcclientaddress derive(district_clean = iif(isNull(district),'',district),",
+				"          IsLMS_clean = iif(isNull(is_lms),'0',is_lms)) ~> drvstandardize",
+				"drvstandardize sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          client_id as integer,",
+				"          address_type as string,",
+				"          address_line_1 as string,",
+				"          address_line_2 as string,",
+				"          landmark as string,",
+				"          pincode as string,",
+				"          city as string,",
+				"          district as string,",
+				"          state as string,",
+				"          country as string,",
+				"          mobile_or_land_line_number as string,",
+				"          email_id as string,",
+				"          address_ownership as string,",
+				"          owner_details as string,",
+				"          owner_name as string,",
+				"          geo_classification as string,",
+				"          years_at_residence as integer,",
+				"          years_in_current_city_or_town as integer,",
+				"          is_active as string,",
+				"          created_by as string,",
+				"          created_date as string,",
+				"          modified_by as string,",
+				"          modified_date as string,",
+				"          supervised_by as string,",
+				"          supervised_date as string,",
+				"          same_as as string,",
+				"          addr_change_type as string,",
+				"          is_kyc as string,",
+				"          addr_dms_id as integer,",
+				"          is_e_kyc as string,",
+				"          is_lms as string,",
+				"          is_udyam as string,",
+				"          same_as_cust_addr_type as string,",
+				"          id as integer,",
+				"          is_saved as boolean,",
+				"          village_name as string,",
+				"          houserooftype as string,",
+				"          DataSource as string,",
+				"          Taluk as string",
+				"     ),",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> snksilverclientaddress"
+			]
+		}
+	}
+}

@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "ds_silver_sink",
+						"referenceName": "ds_silver_application_sink",
 						"type": "DatasetReference"
 					},
 					"name": "snksilverapplication"

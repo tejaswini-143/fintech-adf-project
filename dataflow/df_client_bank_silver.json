@@ -1,0 +1,82 @@
+{
+	"name": "df_client_bank_silver",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_bronze_client_bank_fixed",
+						"type": "DatasetReference"
+					},
+					"name": "srcclientbank"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_silver_client_bank_sink",
+						"type": "DatasetReference"
+					},
+					"name": "snksilverclientbank"
+				}
+			],
+			"transformations": [
+				{
+					"name": "drvstandardize"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          client_id as integer,",
+				"          account_type as string,",
+				"          account_holder_name_as_per_bank as string,",
+				"          ifsc_code as string,",
+				"          bank_name as string,",
+				"          branch_name as string,",
+				"          account_number as string,",
+				"          confirmed_account_number as string,",
+				"          bank_linked_mobile_no as string,",
+				"          upi_id as string,",
+				"          dms_id as integer,",
+				"          account_to_be_used_for as string,",
+				"          account_verification_status as string,",
+				"          created_by as string,",
+				"          created_date as string,",
+				"          modified_by as string,",
+				"          modified_date as string,",
+				"          is_bank_verified as string,",
+				"          id as integer,",
+				"          average_monthly_balance as decimal(19,4),",
+				"          type_of_constitution as string,",
+				"          no_of_digital_sales as string,",
+				"          total_no_of_sales as string,",
+				"          account_opening_date as date,",
+				"          is_saved as boolean,",
+				"          bank_verified_time as timestamp,",
+				"          IsChequeRequired as boolean,",
+				"          IsBankTrigger as boolean,",
+				"          cross_verify as string,",
+				"          BankPassbookImg as integer,",
+				"          BankHolderType as string,",
+				"          AABankDetID as long,",
+				"          source as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> srcclientbank",
+				"srcclientbank derive(account_verification_status_clean = iif(isNull(account_verification_status),'not Verified',account_verification_status),",
+				"          UPIId_clean = iif(isNull(upi_id),'',upi_id)) ~> drvstandardize",
+				"drvstandardize sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> snksilverclientbank"
+			]
+		}
+	}
+}

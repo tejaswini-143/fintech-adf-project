@@ -1,0 +1,181 @@
+{
+	"name": "ds_bronze_client_address_fixed",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_fintech",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Bronze"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "dbo.tbl_client_address_info.parquet",
+				"folderPath": "client_address",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "client_id",
+				"type": "INT32"
+			},
+			{
+				"name": "address_type",
+				"type": "UTF8"
+			},
+			{
+				"name": "address_line_1",
+				"type": "UTF8"
+			},
+			{
+				"name": "address_line_2",
+				"type": "UTF8"
+			},
+			{
+				"name": "landmark",
+				"type": "UTF8"
+			},
+			{
+				"name": "pincode",
+				"type": "UTF8"
+			},
+			{
+				"name": "city",
+				"type": "UTF8"
+			},
+			{
+				"name": "district",
+				"type": "UTF8"
+			},
+			{
+				"name": "state",
+				"type": "UTF8"
+			},
+			{
+				"name": "country",
+				"type": "UTF8"
+			},
+			{
+				"name": "mobile_or_land_line_number",
+				"type": "UTF8"
+			},
+			{
+				"name": "email_id",
+				"type": "UTF8"
+			},
+			{
+				"name": "address_ownership",
+				"type": "UTF8"
+			},
+			{
+				"name": "owner_details",
+				"type": "UTF8"
+			},
+			{
+				"name": "owner_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "geo_classification",
+				"type": "UTF8"
+			},
+			{
+				"name": "years_at_residence",
+				"type": "INT32"
+			},
+			{
+				"name": "years_in_current_city_or_town",
+				"type": "INT32"
+			},
+			{
+				"name": "is_active",
+				"type": "UTF8"
+			},
+			{
+				"name": "created_by",
+				"type": "UTF8"
+			},
+			{
+				"name": "created_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "modified_by",
+				"type": "UTF8"
+			},
+			{
+				"name": "modified_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "supervised_by",
+				"type": "UTF8"
+			},
+			{
+				"name": "supervised_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "same_as",
+				"type": "UTF8"
+			},
+			{
+				"name": "addr_change_type",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_kyc",
+				"type": "UTF8"
+			},
+			{
+				"name": "addr_dms_id",
+				"type": "INT32"
+			},
+			{
+				"name": "is_e_kyc",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_lms",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_udyam",
+				"type": "UTF8"
+			},
+			{
+				"name": "same_as_cust_addr_type",
+				"type": "UTF8"
+			},
+			{
+				"name": "id",
+				"type": "INT32"
+			},
+			{
+				"name": "is_saved",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "village_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "houserooftype",
+				"type": "UTF8"
+			},
+			{
+				"name": "DataSource",
+				"type": "UTF8"
+			},
+			{
+				"name": "Taluk",
+				"type": "UTF8"
+			}
+		]
+	}
+}

@@ -1,0 +1,98 @@
+{
+	"name": "df_client_business_silver",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_bronze_client_business_fixed",
+						"type": "DatasetReference"
+					},
+					"name": "srcclientbusiness"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_silver_client_business_sink",
+						"type": "DatasetReference"
+					},
+					"name": "snksilverclientbusiness"
+				}
+			],
+			"transformations": [
+				{
+					"name": "drvstandardize"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          client_id as integer,",
+				"          client_type as string,",
+				"          customer_subcategory as string,",
+				"          enterprise_shop_name as string,",
+				"          udyam_registration_number as string,",
+				"          date_of_registration as date,",
+				"          date_of_incorporation as date,",
+				"          date_of_business_commencement as date,",
+				"          business_vintage_years as integer,",
+				"          business_vintage_months as integer,",
+				"          industry_type as string,",
+				"          industry_line as string,",
+				"          company_type as string,",
+				"          enterprise_type as string,",
+				"          years_at_present_premises as integer,",
+				"          business_location_village as string,",
+				"          no_of_employees as integer,",
+				"          operating_days_in_a_week as integer,",
+				"          operating_times_in_a_day as integer,",
+				"          book_keeping_status as string,",
+				"          home_based_business as string,",
+				"          applicant_customer_transaction_mode as string,",
+				"          time_spent_at_the_business_in_a_day as integer,",
+				"          npm_rate_of_business as integer,",
+				"          purchases_frequency as string,",
+				"          type_of_purchasing_facility as string,",
+				"          sales_frequency as string,",
+				"          created_by as string,",
+				"          created_date as string,",
+				"          modified_by as string,",
+				"          modified_date as string,",
+				"          udyam_dms_id as integer,",
+				"          id as integer,",
+				"          source_of_income as string,",
+				"          business_managed_by as string,",
+				"          income_type as string,",
+				"          is_financial_details_required as boolean,",
+				"          Occupation as string,",
+				"          BsrCode as string,",
+				"          BusinessVintage as string,",
+				"          RRN as string,",
+				"          BusinessRegNo as string,",
+				"          BusinessRegDate as date,",
+				"          BusinessRegAt as string,",
+				"          BusinessRegOffice as string,",
+				"          BusinessStartedYear as string,",
+				"          OwnersName as string,",
+				"          IsSaved as boolean,",
+				"          NoExistingCattle as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> srcclientbusiness",
+				"srcclientbusiness derive(industry_type_clean = iif(isNull(industry_type),'',industry_type),",
+				"          industry_line_clean = iif(isNull(industry_line),'',industry_line)) ~> drvstandardize",
+				"drvstandardize sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> snksilverclientbusiness"
+			]
+		}
+	}
+}

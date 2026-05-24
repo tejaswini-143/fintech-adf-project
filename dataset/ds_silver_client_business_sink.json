@@ -1,5 +1,5 @@
 {
-	"name": "ds_silver_application_sink",
+	"name": "ds_silver_client_business_sink",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_adls_fintech",
@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "application",
+				"folderPath": "client_business",
 				"fileSystem": "silver"
 			},
 			"compressionCodec": "snappy"

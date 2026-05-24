@@ -1,0 +1,159 @@
+{
+	"name": "ds_bronze_client_bank_fixed",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_fintech",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Bronze"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "dbo.tbl_client_bank_details.parquet",
+				"folderPath": "client_bank",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "client_id",
+				"type": "INT32"
+			},
+			{
+				"name": "account_type",
+				"type": "UTF8"
+			},
+			{
+				"name": "account_holder_name_as_per_bank",
+				"type": "UTF8"
+			},
+			{
+				"name": "ifsc_code",
+				"type": "UTF8"
+			},
+			{
+				"name": "bank_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "branch_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "account_number",
+				"type": "UTF8"
+			},
+			{
+				"name": "confirmed_account_number",
+				"type": "UTF8"
+			},
+			{
+				"name": "bank_linked_mobile_no",
+				"type": "UTF8"
+			},
+			{
+				"name": "upi_id",
+				"type": "UTF8"
+			},
+			{
+				"name": "dms_id",
+				"type": "INT32"
+			},
+			{
+				"name": "account_to_be_used_for",
+				"type": "UTF8"
+			},
+			{
+				"name": "account_verification_status",
+				"type": "UTF8"
+			},
+			{
+				"name": "created_by",
+				"type": "UTF8"
+			},
+			{
+				"name": "created_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "modified_by",
+				"type": "UTF8"
+			},
+			{
+				"name": "modified_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "is_bank_verified",
+				"type": "UTF8"
+			},
+			{
+				"name": "id",
+				"type": "INT32"
+			},
+			{
+				"name": "average_monthly_balance",
+				"type": "DECIMAL",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "type_of_constitution",
+				"type": "UTF8"
+			},
+			{
+				"name": "no_of_digital_sales",
+				"type": "UTF8"
+			},
+			{
+				"name": "total_no_of_sales",
+				"type": "UTF8"
+			},
+			{
+				"name": "account_opening_date",
+				"type": "DATE"
+			},
+			{
+				"name": "is_saved",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "bank_verified_time",
+				"type": "INT96"
+			},
+			{
+				"name": "IsChequeRequired",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "IsBankTrigger",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "cross_verify",
+				"type": "UTF8"
+			},
+			{
+				"name": "BankPassbookImg",
+				"type": "INT32"
+			},
+			{
+				"name": "BankHolderType",
+				"type": "UTF8"
+			},
+			{
+				"name": "AABankDetID",
+				"type": "INT64"
+			},
+			{
+				"name": "source",
+				"type": "UTF8"
+			}
+		]
+	}
+}
