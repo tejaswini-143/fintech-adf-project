@@ -23,7 +23,10 @@
 					},
 					"dataset": {
 						"referenceName": "ds_metadata_silver",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "@dataset().table_name"
+						}
 					},
 					"firstRowOnly": false
 				}
