@@ -159,7 +159,7 @@
 									"referenceName": "ds_sql_source",
 									"type": "DatasetReference",
 									"parameters": {
-										"table_name": "adf_metadata"
+										"table_name": "@item().source_table"
 									}
 								},
 								"firstRowOnly": true
@@ -216,7 +216,10 @@
 							"inputs": [
 								{
 									"referenceName": "ds_sql_source",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": "@item().source_table"
+									}
 								}
 							],
 							"outputs": [
@@ -260,7 +263,10 @@
 								},
 								"dataset": {
 									"referenceName": "ds_sql_source",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": "item().source_table"
+									}
 								}
 							}
 						},
