@@ -84,7 +84,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "ds_application_source",
+									"referenceName": "ds_sql_source",
 									"type": "DatasetReference",
 									"parameters": {
 										"table_name": {

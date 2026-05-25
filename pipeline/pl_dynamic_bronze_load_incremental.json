@@ -188,7 +188,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "@concat('SELECT * FROM ', item().source_table, ' WHERE ', item().watermark_column, ' > ''', activity('lkp_current_watermark').output.firstRow.watermark_value, '''')",
+										"value": "@concat(\n    'SELECT * FROM ',\n    item().source_table,\n    ' WHERE ',\n    coalesce(item().watermark_column, 'modified_date'),\n    ' > ''',\n    activity('lkp_current_watermark').output.firstRow.watermark_value,\n    ''''\n)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
