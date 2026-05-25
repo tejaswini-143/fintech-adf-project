@@ -291,7 +291,7 @@
 							"userProperties": [
 								{
 									"name": "SourceTable",
-									"value": "tbl_client_bank_details"
+									"value": "@item().source_table"
 								},
 								{
 									"name": "Watermark",
@@ -304,37 +304,6 @@
 							"linkedServiceName": {
 								"referenceName": "ls_sqlserver_fintech",
 								"type": "LinkedServiceReference"
-							}
-						},
-						{
-							"name": "lkp_new_watermark_copy1",
-							"type": "Lookup",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "SqlServerSource",
-									"sqlReaderQuery": {
-										"value": "@concat(\n    'SELECT ''',\n    string(item().load_type),\n    ''' AS load_type, ''',\n    string(item().watermark_column),\n    ''' AS watermark_column'\n)",
-										"type": "Expression"
-									},
-									"queryTimeout": "02:00:00",
-									"partitionOption": "None"
-								},
-								"dataset": {
-									"referenceName": "ds_sql_source",
-									"type": "DatasetReference",
-									"parameters": {
-										"table_name": "item().source_table"
-									}
-								}
 							}
 						}
 					]
