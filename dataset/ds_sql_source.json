@@ -1,5 +1,5 @@
 {
-	"name": "ds_application_source",
+	"name": "ds_sql_source",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_sqlserver_fintech",

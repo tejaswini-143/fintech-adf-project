@@ -1,5 +1,5 @@
 {
-	"name": "ds_bronze_source",
+	"name": "ds_sql_sink_bronze_source",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_adls_fintech",
