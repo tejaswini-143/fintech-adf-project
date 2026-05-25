@@ -188,7 +188,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "@concat(\n'SELECT * FROM ',\nitem().source_table,\n' WHERE ',\nitem().watermark_column,\n' > ''',\nactivity('lkp_current_watermark').output.firstRow.watermark_value,\n''''\n)",
+										"value": "@concat(\n    'SELECT * FROM ', item().source_table, \n    ' WHERE ', item().watermark_column, \n    ' > ''', activity('lkp_current_watermark').output.firstRow.watermark_value, ''''\n)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
