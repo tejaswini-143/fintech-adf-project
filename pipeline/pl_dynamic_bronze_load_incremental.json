@@ -1,5 +1,5 @@
 {
-	"name": "pl_dynamic_bronze_load_copy1",
+	"name": "pl_dynamic_bronze_load_incremental",
 	"properties": {
 		"activities": [
 			{
@@ -129,7 +129,14 @@
 						{
 							"name": "lkp_current_watermark",
 							"type": "Lookup",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "condition_check",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"policy": {
 								"timeout": "0.12:00:00",
 								"retry": 0,
@@ -142,15 +149,18 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "SELECT watermark_value\nFROM dbo.adf_metadata\nWHERE source_table='@{item().source_table}'",
+										"value": "@concat(\n'SELECT watermark_value FROM dbo.adf_metadata WHERE source_table=''', \nitem().source_table,\n''''\n)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
 								"dataset": {
-									"referenceName": "ds_metadata_source",
-									"type": "DatasetReference"
+									"referenceName": "ds_sql_source",
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": "adf_metadata"
+									}
 								},
 								"firstRowOnly": true
 							}
@@ -178,7 +188,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "@concat(\n'SELECT * FROM dbo.',\nitem().source_table,\n' WHERE modified_date > ''',\nactivity('lkp_current_watermark').output.firstRow.watermark_value,\n''''\n)",
+										"value": "@concat(\n'SELECT * FROM ',\nitem().source_table,\n' WHERE ',\nitem().watermark_column,\n' > ''',\nactivity('lkp_current_watermark').output.firstRow.watermark_value,\n''''\n)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -212,9 +222,83 @@
 							"outputs": [
 								{
 									"referenceName": "ds_sql_sink_bronze_source",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"folder_name": "@item().target_folder"
+									}
 								}
 							]
+						},
+						{
+							"name": "lkp_new_watermark",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "cpy_incremental",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"sqlReaderQuery": {
+										"value": "@concat(\n'SELECT MAX(',\nitem().watermark_column,\n') AS max_watermark FROM ',\nitem().source_table\n)",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "ds_sql_source",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "sp_update_watermark",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "lkp_new_watermark",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "SourceTable",
+									"value": "tbl_client_bank_details"
+								},
+								{
+									"name": "Watermark",
+									"value": "@activity('lkp_new_watermark').output.firstRow.max_watermark"
+								}
+							],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[usp_UpdateWatermark]"
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_sqlserver_fintech",
+								"type": "LinkedServiceReference"
+							}
 						}
 					]
 				}
