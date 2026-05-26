@@ -617,3 +617,30 @@ Successfully built an end-to-end enterprise-style Azure Data Engineering solutio
 - Azure DevOps Source Control
 
 The solution provides a scalable foundation for loan application analytics and reporting.
+
+
+# Project Screenshots
+
+## Bronze Pipeline
+
+![Bronze Pipeline](screenshots/bronze_pipeline.png)
+
+## Silver Pipeline
+
+![Silver Pipeline](screenshots/silver/silver_pipeline.png)
+
+## Incremental Load Pipeline
+
+![Incremental Pipeline](screenshots/incremental_pipeline.png)
+
+## Gold Layer Storage
+
+![Gold Layer](screenshots/adls_gold_layer.png)
+
+## Power BI Data Model
+
+![Power BI Model](screenshots/powerbi_model.png)
+
+## Power BI Dashboard
+
+![Power BI Dashboard](screenshots/powerbi_dashboard.png)
