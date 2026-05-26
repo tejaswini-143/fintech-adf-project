@@ -258,6 +258,7 @@ dim_bank ---- dim_client ---- dim_business
                          |
                          |
               fact_loan_application
+<img width="1919" height="959" alt="image" src="https://github.com/user-attachments/assets/9f606eff-5693-4a97-919b-8d1818d51867" />
 
 ---
 
