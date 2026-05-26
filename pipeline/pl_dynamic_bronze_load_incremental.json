@@ -321,7 +321,7 @@
 												"referenceName": "ds_sql_source",
 												"type": "DatasetReference",
 												"parameters": {
-													"table_name": "item().source_table"
+													"table_name": "@item().source_table"
 												}
 											}
 										}
@@ -504,7 +504,7 @@
 									"referenceName": "ds_sql_source",
 									"type": "DatasetReference",
 									"parameters": {
-										"table_name": "item().source_table"
+										"table_name": "@item().source_table"
 									}
 								}
 							}
