@@ -288,18 +288,25 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": [
-								{
-									"name": "SourceTable",
-									"value": "@item().source_table"
-								},
-								{
-									"name": "Watermark",
-									"value": "@activity('lkp_new_watermark').output.firstRow.max_watermark"
-								}
-							],
+							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "[dbo].[usp_UpdateWatermark]"
+								"storedProcedureName": "[dbo].[usp_UpdateWatermark]",
+								"storedProcedureParameters": {
+									"SourceTable": {
+										"value": {
+											"value": "@item().source_table",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"Watermark": {
+										"value": {
+											"value": "@activity('lkp_new_watermark').output.firstRow.max_watermark",
+											"type": "Expression"
+										},
+										"type": "DateTime"
+									}
+								}
 							},
 							"linkedServiceName": {
 								"referenceName": "ls_sqlserver_fintech",
