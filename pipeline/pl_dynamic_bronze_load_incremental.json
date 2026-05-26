@@ -244,7 +244,7 @@
 											"source": {
 												"type": "SqlServerSource",
 												"sqlReaderQuery": {
-													"value": "@concat(\n    'SELECT * FROM ',\n    item().source_table,\n    ' WHERE ',\n    coalesce(item().watermark_column, 'modified_date'),\n    ' > ''',\n    activity('lkp_current_watermark').output.firstRow.watermark_value,\n    ''''\n)",
+													"value": "@concat(\n'SELECT MAX(modified_date) AS max_watermark FROM ',\nitem().source_table\n)",
 													"type": "Expression"
 												},
 												"queryTimeout": "02:00:00",
