@@ -123,7 +123,246 @@
 								"expression": {
 									"value": "@equals(item().load_type,'Incremental')",
 									"type": "Expression"
-								}
+								},
+								"ifFalseActivities": [
+									{
+										"name": "copy_dynamic_table_copy1",
+										"type": "Copy",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "SqlServerSource",
+												"queryTimeout": "02:00:00",
+												"partitionOption": "None"
+											},
+											"sink": {
+												"type": "ParquetSink",
+												"storeSettings": {
+													"type": "AzureBlobFSWriteSettings"
+												},
+												"formatSettings": {
+													"type": "ParquetWriteSettings"
+												}
+											},
+											"enableStaging": false,
+											"translator": {
+												"type": "TabularTranslator",
+												"typeConversion": true,
+												"typeConversionSettings": {
+													"allowDataTruncation": true,
+													"treatBooleanAsNumber": false
+												}
+											}
+										},
+										"inputs": [
+											{
+												"referenceName": "ds_sql_source",
+												"type": "DatasetReference",
+												"parameters": {
+													"table_name": {
+														"value": "@item().source_table",
+														"type": "Expression"
+													}
+												}
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "ds_application_bronze_sink",
+												"type": "DatasetReference",
+												"parameters": {
+													"folder_name": {
+														"value": "@item().target_folder",
+														"type": "Expression"
+													}
+												}
+											}
+										]
+									}
+								],
+								"ifTrueActivities": [
+									{
+										"name": "lkp_current_watermark_copy1",
+										"type": "Lookup",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "SqlServerSource",
+												"sqlReaderQuery": {
+													"value": "@concat(\n'SELECT watermark_value FROM dbo.adf_metadata WHERE source_table=''', \nitem().source_table,\n''''\n)",
+													"type": "Expression"
+												},
+												"queryTimeout": "02:00:00",
+												"partitionOption": "None"
+											},
+											"dataset": {
+												"referenceName": "ds_sql_source",
+												"type": "DatasetReference",
+												"parameters": {
+													"table_name": "@item().source_table"
+												}
+											},
+											"firstRowOnly": true
+										}
+									},
+									{
+										"name": "cpy_incremental_copy1",
+										"type": "Copy",
+										"dependsOn": [
+											{
+												"activity": "lkp_current_watermark_copy1",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "SqlServerSource",
+												"sqlReaderQuery": {
+													"value": "@concat(\n    'SELECT * FROM ',\n    item().source_table,\n    ' WHERE ',\n    coalesce(item().watermark_column, 'modified_date'),\n    ' > ''',\n    activity('lkp_current_watermark').output.firstRow.watermark_value,\n    ''''\n)",
+													"type": "Expression"
+												},
+												"queryTimeout": "02:00:00",
+												"partitionOption": "None"
+											},
+											"sink": {
+												"type": "ParquetSink",
+												"storeSettings": {
+													"type": "AzureBlobFSWriteSettings"
+												},
+												"formatSettings": {
+													"type": "ParquetWriteSettings"
+												}
+											},
+											"enableStaging": false,
+											"translator": {
+												"type": "TabularTranslator",
+												"typeConversion": true,
+												"typeConversionSettings": {
+													"allowDataTruncation": true,
+													"treatBooleanAsNumber": false
+												}
+											}
+										},
+										"inputs": [
+											{
+												"referenceName": "ds_sql_source",
+												"type": "DatasetReference",
+												"parameters": {
+													"table_name": "@item().source_table"
+												}
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "ds_sql_sink_bronze_source",
+												"type": "DatasetReference",
+												"parameters": {
+													"folder_name": "@item().target_folder"
+												}
+											}
+										]
+									},
+									{
+										"name": "lkp_new_watermark_copy1",
+										"type": "Lookup",
+										"dependsOn": [
+											{
+												"activity": "cpy_incremental_copy1",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "SqlServerSource",
+												"sqlReaderQuery": {
+													"value": "@concat(\n'SELECT MAX(modified_date) AS max_watermark FROM ',\nitem().source_table\n)",
+													"type": "Expression"
+												},
+												"queryTimeout": "02:00:00",
+												"partitionOption": "None"
+											},
+											"dataset": {
+												"referenceName": "ds_sql_source",
+												"type": "DatasetReference",
+												"parameters": {
+													"table_name": "item().source_table"
+												}
+											}
+										}
+									},
+									{
+										"name": "sp_update_watermark_copy1",
+										"type": "SqlServerStoredProcedure",
+										"dependsOn": [
+											{
+												"activity": "lkp_new_watermark_copy1",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [
+											{
+												"name": "SourceTable",
+												"value": "@item().source_table"
+											},
+											{
+												"name": "Watermark",
+												"value": "@activity('lkp_new_watermark').output.firstRow.max_watermark"
+											}
+										],
+										"typeProperties": {
+											"storedProcedureName": "[dbo].[usp_UpdateWatermark]"
+										},
+										"linkedServiceName": {
+											"referenceName": "ls_sqlserver_fintech",
+											"type": "LinkedServiceReference"
+										}
+									}
+								]
 							}
 						},
 						{
@@ -255,7 +494,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "@concat(\n    'SELECT MAX(',\n    item().watermark_column,\n    ') AS max_watermark FROM ',\n    item().source_table\n)",
+										"value": "@concat(\n'SELECT MAX(modified_date) AS max_watermark FROM ',\nitem().source_table\n)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
